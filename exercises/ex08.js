@@ -9,7 +9,13 @@ Create a function named repeatNumbers that will return a string with each of the
 */
 
 const repeatNumbers = function (data) {
-  // Put your solution here
+  const output = []
+  for (array of data) {
+    const [numToRepeat, repetitions] = array
+    const string = new Array(repetitions).fill(numToRepeat).join("")
+    output.push(string)
+  }
+  return output.join(", ")
 };
 
 console.log(repeatNumbers([[1, 10]])); // 1111111111
