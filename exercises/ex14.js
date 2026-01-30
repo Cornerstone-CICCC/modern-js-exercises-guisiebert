@@ -23,7 +23,75 @@ Penny (1¢)
 */
 
 const calculateChange = function (total, cash) {
-  // Your code here
+  let changeLeft = cash - total
+  let change = {}
+
+
+  // twentyDollar bills
+  if (changeLeft > 2000) {
+    const bills = Math.floor(changeLeft / 2000)
+    change.twentyDollar = bills
+    changeLeft = changeLeft - (bills * 2000)
+  }
+
+  // tenDollar bills
+  if (changeLeft > 1000) {
+    const bills = Math.floor(changeLeft / 1000)
+    change.tenDollar = bills
+    changeLeft = changeLeft - (bills * 1000)
+  }
+
+  // fiveDollar bills
+  if (changeLeft > 500) {
+    const bills = Math.floor(changeLeft / 500)
+    change.fiveDollar = bills
+    changeLeft = changeLeft - (bills * 500)
+  }
+
+  // twoDollar bills
+  if (changeLeft > 200) {
+    const bills = Math.floor(changeLeft / 200)
+    change.toonie = bills
+    changeLeft = changeLeft - (bills * 200)
+  }
+
+  // oneDollar bills
+  if (changeLeft > 100) {
+    const bills = Math.floor(changeLeft / 100)
+    change.loonie = bills
+    changeLeft = changeLeft - (bills * 100)
+  }
+
+  // quarter
+  if (changeLeft > 25) {
+    const bills = Math.floor(changeLeft / 25)
+    change.quarter = bills
+    changeLeft = changeLeft - (bills * 25)
+  }
+
+  // dime
+  if (changeLeft > 10) {
+    const bills = Math.floor(changeLeft / 10)
+    change.dime = bills
+    changeLeft = changeLeft - (bills * 10)
+  }
+
+  // nickel
+  if (changeLeft > 5) {
+    const bills = Math.floor(changeLeft / 5)
+    change.nickel = bills
+    changeLeft = changeLeft - (bills * 5)
+  }
+
+  // penny
+  if (changeLeft > 1) {
+    const bills = Math.floor(changeLeft / 1)
+    change.penny = bills
+    changeLeft = changeLeft - (bills * 1)
+  }
+
+  return change
+
 };
 
 console.log(calculateChange(1787, 2000)); // { twoDollar: 1, dime: 1, penny: 3 }
