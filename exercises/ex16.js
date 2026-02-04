@@ -16,7 +16,70 @@ For more information on casing styles, read Wikipedia's Special Case Styles for 
 */
 
 const makeCaze = function (input, caze) {
-  // Put your solution here
+  function applyCasing(input, caze) {
+    if (caze === "camel") {
+      const arr = input.split(" ")
+    
+      for (let i = 1; i < arr.length; i++) {
+        const [firstLetter, ...rest] = arr[i]
+        arr[i] = firstLetter.toUpperCase() + rest.join("")
+      }
+    
+      return arr.join("")
+    } 
+    
+    else if (caze === "pascal") {
+      let wordsArrayPascal = input.split(" ")
+      for (let i = 0; i < wordsArrayPascal.length; i++) {
+        const [firstLetter, ...rest] = wordsArrayPascal[i]
+        wordsArrayPascal[i] = firstLetter.toUpperCase() + rest.join("")
+      }
+      return wordsArrayPascal.join("")
+    } 
+    
+    else if (caze === "snake") {
+      return input.split(" ").join("_");
+    } 
+    
+    else if (caze === "kebab") {
+      return input.split(" ").join("-");
+    }
+    
+    else if (caze === "title") {
+      let wordsArrayTitle = input.split(" ")
+      for (let i = 0; i < wordsArrayTitle.length; i++) {
+        const [firstLetter, ...rest] = wordsArrayTitle[i]
+        wordsArrayTitle[i] = firstLetter.toUpperCase() + rest.join("")
+      }
+      return wordsArrayTitle.join(" ")
+    }
+    
+    else if (caze === "vowel") {
+      return input.toLowerCase().split("").map(char => "aeiou".includes(char) ? char.toUpperCase() : char).join("");
+    }
+    
+    else if (caze === "consonant") {
+      return input.toLowerCase().split("").map(char => !"aeiou".includes(char) ? char.toUpperCase() : char).join("");
+    }
+    
+    else if (caze === "upper") {
+      return input.toUpperCase();
+    }
+    
+    else if (caze === "lower") {
+      return input.toLowerCase();
+    }
+  } 
+
+  if (Array.isArray(caze)) {
+    for (const casing of caze) {
+      console.log(`Applying ${casing} to ${input}`);
+      input = applyCasing(input, casing);
+    }
+    return input;
+  } else {
+    return applyCasing(input, caze);
+  }
 };
 
 console.log(makeCaze("this is a string", "camel")); // thisIsAString
