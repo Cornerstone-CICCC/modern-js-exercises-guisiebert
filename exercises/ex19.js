@@ -65,3 +65,50 @@ Instruction
 Create a function generateBoard which will return a nested array representing the board, containing the location of two queens.
 Create a function called queenThreat that will indicate whether or not the two queens are positioned so that they attack each other.
 */
+
+function generateBoard(whiteQueen, blackQueen) {
+  // Create an 8x8 board filled with zeros
+  const board = Array(8)
+    .fill(0)
+    .map(() => Array(8).fill(0))
+
+  // Place the queens on the board (1 represents a queen)
+  board[whiteQueen[0]][whiteQueen[1]] = 1
+  board[blackQueen[0]][blackQueen[1]] = 1
+
+  return board
+}
+
+function queenThreat(board) {
+  // Find the positions of the two queens
+  let queen1 = null
+  let queen2 = null
+
+  for (let row = 0; row < 8; row++) {
+    for (let col = 0; col < 8; col++) {
+      if (board[row][col] === 1) {
+        if (queen1 === null) {
+          queen1 = [row, col]
+        } else {
+          queen2 = [row, col]
+          break
+        }
+      }
+    }
+    if (queen2 !== null) break
+  }
+
+  // Check if they are on the same row
+  if (queen1[0] === queen2[0]) return true
+
+  // Check if they are on the same column
+  if (queen1[1] === queen2[1]) return true
+
+  // Check if they are on the same diagonal
+  if (Math.abs(queen1[0] - queen2[0]) === Math.abs(queen1[1] - queen2[1]))
+    return true
+
+  return false
+}
+
+module.exports = { queenThreat, generateBoard }

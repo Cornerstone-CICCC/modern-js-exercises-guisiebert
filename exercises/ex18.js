@@ -23,7 +23,30 @@ Create a function named squareCode that will receive a message, and return the s
 */
 
 const squareCode = function (message) {
-  // Put your solution here
+  const cleanMsg = message.replaceAll(" ", "")
+  const squareRoot = Math.ceil(Math.sqrt(cleanMsg.length))
+  console.log(`squareRoot is ${squareRoot}`)
+  console.log(`cleanMsg is ${cleanMsg}`)
+
+  let matrix = []
+  let string = ""
+  let index = 0
+  let columIndex = 0
+  while (true) {
+    if (cleanMsg[index] !== undefined) string += cleanMsg[index]
+
+    index += squareRoot
+
+    if (index >= cleanMsg.length) {
+      string += " "
+      columIndex++
+      index = columIndex
+    }
+    if (string.length >= cleanMsg.length + squareRoot) break
+  }
+
+  console.log(`string  ${string}`)
+  return string.trim()
 };
 
 console.log(squareCode("chill out")); // clu hlt io
